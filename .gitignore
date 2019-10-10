@@ -1,0 +1,9 @@
+.ipynb_checkpoints/
+.vector_cache/
+__pycache__/
+.venv/
+.vscode/
+datasets/
+images/
+master/
+.DS_Store
