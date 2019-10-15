@@ -632,7 +632,7 @@ class BertForMaskedLM(nn.Module):
 
 
 # 学習済みモデルのロード
-def set_learned_params(net, weights_path = "./weights/pytorch_model.bin"):
+def set_learned_params(net, weights_path = "./weights/pytorch_model.bin", print_load=False):
 
     # セットするパラメータを読み込む
     loaded_state_dict = torch.load(weights_path)
@@ -651,7 +651,8 @@ def set_learned_params(net, weights_path = "./weights/pytorch_model.bin"):
     for index, (key_name, value) in enumerate(loaded_state_dict.items()):
         name = param_names[index]  # 現在のネットワークでのパラメータ名を取得
         new_state_dict[name] = value  # 値を入れる
-        print(str(key_name)+"→"+str(name))  # 何から何に入ったかを表示
+        if print_load:
+            print(str(key_name)+"→"+str(name))  # 何から何に入ったかを表示
 
         # 現在のネットワークのパラメータを全部ロードしたら終える
         if (index+1 - len(param_names)) >= 0:
